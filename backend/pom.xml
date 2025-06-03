@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
-			<version>3.1.1</version> <!-- As found in original pom, task description said 'validation' -->
+			<!-- As found in original pom, task description said 'validation' -->
 		</dependency>
 	</dependencies>
 
@@ -88,7 +88,8 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<!-- Version for lombok is managed by Spring Boot parent's dependencyManagement -->
+							<!-- Version for lombok is managed by Spring Boot
+							parent's dependencyManagement -->
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

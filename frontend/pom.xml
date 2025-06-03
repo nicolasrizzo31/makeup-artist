@@ -57,7 +57,7 @@
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>run build</arguments> <!-- This corresponds to "build": "ng build --configuration production" in package.json -->
+							<arguments>run build</arguments>
 						</configuration>
 					</execution>
 				</executions>
