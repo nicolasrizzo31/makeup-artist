@@ -1,0 +1,41 @@
+<h2>Prenota un Appuntamento</h2>
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" formControlName="name">
+    <div *ngIf="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched">
+      Nome è obbligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched">
+      <span *ngIf="bookingForm.get('email')?.errors?.['required']">Email è obbligatoria.</span>
+      <span *ngIf="bookingForm.get('email')?.errors?.['email']">Email non valida.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="date">Data:</label>
+    <input type="date" id="date" formControlName="date">
+    <div *ngIf="bookingForm.get('date')?.invalid && bookingForm.get('date')?.touched">
+      Data è obbligatoria.
+    </div>
+  </div>
+
+  <div>
+    <label for="service">Servizio Richiesto:</label>
+    <input type="text" id="service" formControlName="service">
+    <div *ngIf="bookingForm.get('service')?.invalid && bookingForm.get('service')?.touched">
+      Servizio è obbligatorio.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="bookingForm.invalid">Invia Prenotazione</button>
+</form>
+
+<div *ngIf="submissionMessage" style="margin-top: 20px;">
+  <p>{{ submissionMessage }}</p>
+</div>
