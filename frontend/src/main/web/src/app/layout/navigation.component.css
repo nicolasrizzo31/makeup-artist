@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--color-black); /* Assuming --color-black is defined globally or replace it */
+}
+
+.logo {
+  /* Add styles for logo if any, from the original .logo or new ones */
+  /* For now, it's just a placeholder text in HTML */
+  color: var(--color-white); /* Assuming --color-white is defined globally */
+}
+
+nav {
+  /* Styles for the nav container itself, if any */
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0; /* Resetting default margins */
+  padding: 0; /* Resetting default paddings */
+}
+
+.nav-list li {
+  margin-left: 1.5rem;
+}
+
+.nav-list a {
+  color: var(--color-white); /* Assuming --color-white is defined globally */
+  text-decoration: none;
+}
+
+.nav-toggle {
+  display: none; /* Hidden by default, shown in media query for mobile */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Resetting default paddings */
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--color-white); /* Assuming --color-white is defined globally */
+  margin: 5px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* For animations */
+}
+
+/* Responsive styles for hamburger menu - adjust as per original styles.css */
+@media(max-width: 768px) {
+  .nav-list {
+    display: none; /* Initially hidden on small screens */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust as needed, based on header height */
+    right: 2rem; /* Align to the right */
+    background: var(--color-black); /* Assuming --color-black is defined globally */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+
+  .nav-list.active {
+    display: flex; /* Shown when active */
+  }
+
+  .nav-list li {
+    margin-left: 0; /* Reset margin for vertical layout */
+    margin-bottom: 0.5rem; /* Spacing for vertical items */
+  }
+
+  .nav-list li:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+  }
+
+  .nav-toggle {
+    display: block; /* Show the toggle button on small screens */
+  }
+}
+
+/* Define CSS variables if not globally available in styles.css of Angular app */
+/* It's better to define these in the global styles.css (frontend/src/main/web/src/styles.css) */
+/* For component-specific fallbacks, or if they are truly local: */
+/*
+:host {
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+}
+*/
