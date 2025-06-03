@@ -33,7 +33,7 @@ The frontend is an Angular application. The `frontend-maven-plugin` is configure
     - **For Windows:**
       ```bash
       cd frontend
-      ../backend/mvnw.cmd clean install
+      mvn clean install -DskipTests
       ```
 
     - **For macOS/Linux:**
@@ -48,7 +48,7 @@ The frontend is an Angular application. The `frontend-maven-plugin` is configure
 
     ```bash
     cd src/main/web
-    ../../../target/node/npm start
+    npm start
     ```
     This will start the frontend development server, typically on `http://localhost:4200`.
 
