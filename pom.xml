@@ -6,18 +6,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version> <!-- Using version from existing POM -->
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>3.5.0</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.nick</groupId>
-	<artifactId>makeup-artist</artifactId> <!-- This was the original artifactId, will keep for parent -->
+	<artifactId>makeup-artist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-
+	
 	<modules>
 		<module>backend</module>
 		<module>frontend</module>
