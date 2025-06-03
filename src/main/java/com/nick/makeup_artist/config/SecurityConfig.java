@@ -1,5 +1,7 @@
 package com.nick.makeup_artist.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +25,7 @@ public class SecurityConfig {
 		http
 		.authorizeHttpRequests(authorizeRequests ->
 		authorizeRequests
-		.requestMatchers("/h2-console/**", "/", "/*.html", "/**/*.css", "/**/*.js").permitAll()
+		.requestMatchers("/h2-console/**", "/", "/*.html", "/**/*.css", "/**/*.js", "/api/bookings", "/api/contact").permitAll()
 		.anyRequest().authenticated()
 				)
 		.formLogin(withDefaults())
