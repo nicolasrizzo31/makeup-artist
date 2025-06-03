@@ -1,15 +1,25 @@
 package com.nick.makeup_artist.controller;
 
-import com.nick.makeup_artist.model.ServiceItem;
-import com.nick.makeup_artist.service.ServiceItemService;
-import com.nick.makeup_artist.exception.ResourceNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.nick.makeup_artist.exception.ResourceNotFoundException;
+import com.nick.makeup_artist.model.ServiceItem;
+import com.nick.makeup_artist.service.ServiceItemService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/services")
@@ -38,14 +48,14 @@ public class ServiceController {
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ServiceItem> createServiceItem(@RequestBody ServiceItem serviceItem) {
+	public ResponseEntity<ServiceItem> createServiceItem(@Valid @RequestBody ServiceItem serviceItem) {
 		ServiceItem savedItem = serviceItemService.saveServiceItem(serviceItem);
 		return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ServiceItem> updateServiceItem(@PathVariable Long id, @RequestBody ServiceItem serviceItemDetails) {
+	public ResponseEntity<ServiceItem> updateServiceItem(@PathVariable Long id, @Valid @RequestBody ServiceItem serviceItemDetails) {
 		return serviceItemService.getServiceItemById(id)
 				.map(existingItem -> {
 					existingItem.setName(serviceItemDetails.getName());

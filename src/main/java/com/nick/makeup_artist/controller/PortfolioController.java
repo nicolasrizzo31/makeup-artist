@@ -19,6 +19,8 @@ import com.nick.makeup_artist.exception.ResourceNotFoundException;
 import com.nick.makeup_artist.model.PortfolioItem;
 import com.nick.makeup_artist.service.PortfolioItemService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/portfolio")
 public class PortfolioController {
@@ -45,14 +47,14 @@ public class PortfolioController {
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<PortfolioItem> createPortfolioItem(@RequestBody PortfolioItem portfolioItem) {
+	public ResponseEntity<PortfolioItem> createPortfolioItem(@Valid @RequestBody PortfolioItem portfolioItem) {
 		PortfolioItem savedItem = portfolioItemService.savePortfolioItem(portfolioItem);
 		return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<PortfolioItem> updatePortfolioItem(@PathVariable Long id, @RequestBody PortfolioItem portfolioItemDetails) {
+	public ResponseEntity<PortfolioItem> updatePortfolioItem(@PathVariable Long id, @Valid @RequestBody PortfolioItem portfolioItemDetails) {
 		return portfolioItemService.getPortfolioItemById(id)
 				.map(existingItem -> {
 					existingItem.setTitle(portfolioItemDetails.getTitle());
