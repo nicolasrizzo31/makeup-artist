@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nick.makeup_artist.model.UserProfile;
 import com.nick.makeup_artist.service.UserProfileService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/profile")
 public class UserProfileController {
@@ -30,7 +32,7 @@ public class UserProfileController {
 
 	@PutMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<UserProfile> updateUserProfile(@RequestBody UserProfile userProfileDetails) {
+	public ResponseEntity<UserProfile> updateUserProfile(@Valid @RequestBody UserProfile userProfileDetails) {
 		UserProfile updatedProfile = userProfileService.saveUserProfile(userProfileDetails);
 		return ResponseEntity.ok(updatedProfile);
 	}

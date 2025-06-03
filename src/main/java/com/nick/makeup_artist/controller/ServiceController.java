@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,14 +39,14 @@ public class ServiceController {
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ServiceItem> createServiceItem(@RequestBody ServiceItem serviceItem) {
+	public ResponseEntity<ServiceItem> createServiceItem(@Valid @RequestBody ServiceItem serviceItem) {
 		ServiceItem savedItem = serviceItemService.saveServiceItem(serviceItem);
 		return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ServiceItem> updateServiceItem(@PathVariable Long id, @RequestBody ServiceItem serviceItemDetails) {
+	public ResponseEntity<ServiceItem> updateServiceItem(@PathVariable Long id, @Valid @RequestBody ServiceItem serviceItemDetails) {
 		return serviceItemService.getServiceItemById(id)
 				.map(existingItem -> {
 					existingItem.setName(serviceItemDetails.getName());

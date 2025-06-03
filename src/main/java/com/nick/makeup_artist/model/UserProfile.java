@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -26,8 +28,10 @@ public class UserProfile {
 	@Column(columnDefinition = "TEXT")
 	private String bio;
 
+	@NotBlank
 	private String fullName;
 
+	@Email
 	@Column(unique = true) // Assuming email should be unique for a profile
 	private String email;
 

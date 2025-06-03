@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class PortfolioItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank
 	@Column(nullable = false)
 	private String title;
 
@@ -32,6 +34,7 @@ public class PortfolioItem {
 	@Column(columnDefinition = "TEXT")
 	private String description;
 
+	@NotBlank
 	@Column(nullable = false)
 	private String imageUrl;
 
