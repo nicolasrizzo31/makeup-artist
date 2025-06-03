@@ -4,6 +4,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,7 +22,9 @@ public class SecurityConfig {
 		http
 		.authorizeHttpRequests(authorizeRequests ->
 		authorizeRequests
-		.requestMatchers("/h2-console/**", "/", "/*.html", "/**/*.css", "/**/*.js", "/api/bookings", "/api/contact").permitAll()
+		.requestMatchers("/h2-console/**", "/", "/*.html", "/**/*.css", "/**/*.js").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/bookings").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
 		.anyRequest().authenticated()
 				)
 		.formLogin(withDefaults())

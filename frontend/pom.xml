@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.nick</groupId>
+		<artifactId>makeup-artist</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>makeup-artist-frontend</artifactId>
+	<packaging>pom</packaging>
+
+	<name>makeup-artist-frontend</name>
+	<description>Frontend Angular Module</description>
+
+	<properties>
+		<node.version>v18.18.0</node.version>
+		<npm.version>10.2.0</npm.version>
+		<frontend-src-dir>${project.basedir}/src/main/web</frontend-src-dir>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.12.1</version>
+				<configuration>
+					<workingDirectory>${frontend-src-dir}</workingDirectory>
+					<installDirectory>${project.build.directory}</installDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>${node.version}</nodeVersion>
+							<npmVersion>${npm.version}</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm run build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run build</arguments> <!-- This corresponds to "build": "ng build --configuration production" in package.json -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>copy-angular-build</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<!-- The outputDirectory should be where Spring Boot serves static files from the backend module -->
+							<outputDirectory>${project.basedir}/../backend/target/classes/static</outputDirectory>
+							<resources>
+								<resource>
+									<!-- This directory is created by 'npm run build' (ng build) -->
+									<!-- Default for Angular CLI is 'dist/<project-name>/browser' or 'dist/<project-name>' if not using SSR.
+									     The package.json has "name": "angular-frontend".
+									     The angular.json outputPath is "dist/angular-frontend".
+									     The final output is typically in a 'browser' subfolder for application builder. -->
+									<directory>${frontend-src-dir}/dist/angular-frontend/browser</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

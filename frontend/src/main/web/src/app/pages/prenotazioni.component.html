@@ -1,0 +1,42 @@
+<section class="prenotazioni bg-black">
+    <div class="container flex">
+        <div class="calendar">
+            <!-- The Google Calendar iframe might need sanitization in Angular (DomSanitizer) -->
+            <!-- Or be replaced with a dedicated Angular calendar component later -->
+            <p style="color: white;"><i>(Placeholder per Google Calendar iframe)</i></p>
+            <!-- <iframe src="https://calendar.google.com/..." frameborder="0"></iframe> -->
+        </div>
+        <form id="booking-form" class="booking-form bg-dark-gray">
+            <!-- Campi form come prima -->
+            <!-- Placeholder for form fields. These will become Angular form controls. -->
+            <h2>Prenota il tuo appuntamento</h2>
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="service">Servizio:</label>
+                <select id="service" name="service" required>
+                    <option value="">Seleziona un servizio</option>
+                    <option value="sposa">Trucco Sposa</option>
+                    <option value="evento">Trucco Evento</option>
+                    <option value="shooting">Shooting Fotografico</option>
+                    <option value="lezione">Lezione di Self-Makeup</option>
+                </select>
+            </div>
+            <div>
+                <label for="message">Messaggio (opzionale):</label>
+                <textarea id="message" name="message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-accent">Invia Richiesta</button>
+        </form>
+    </div>
+</section>
