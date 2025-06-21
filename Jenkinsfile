@@ -33,8 +33,8 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                sh 'chmod +x mvnw'
-                sh './mvnw clean package -DskipTests'
+                sh 'chmod +x mvnw || true'
+                sh './mvnw clean package -DskipTests -Dserver.port=8090'
             }
         }
 
