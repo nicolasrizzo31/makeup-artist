@@ -13,6 +13,7 @@
 	<artifactId>makeup-artist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<description>Sito di test per la gestione di prenotazioni</description>
 
 	<properties>
 		<java.version>17</java.version>
