@@ -14,7 +14,7 @@ pipeline {
             steps {
                 deleteDir() // Rimuove tutto il contenuto della directory corrente
                 sshagent (credentials: ['github-ssh']) {
-                    sh 'git clone git@github.com:<tuo-utente>/<tuo-repo>.git .'
+                    sh 'git clone git@github.com:nicolasrizzo31/makeup-artist.git .'
                 }
             }
         }
