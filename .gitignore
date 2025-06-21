@@ -32,7 +32,8 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+# DO NOT ignore the wrapper itself:
+# .mvn/wrapper/maven-wrapper.jar ← DEVE essere versionato!
 
 # Node
 node_modules/
