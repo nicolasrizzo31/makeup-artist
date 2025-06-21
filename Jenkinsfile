@@ -13,6 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sshagent (credentials: ['github-ssh']) {
+                    sh 'rm -rf *'
                     sh 'git clone git@github.com:nicolasrizzo31/makeup-artist.git .'
                 }
             }
